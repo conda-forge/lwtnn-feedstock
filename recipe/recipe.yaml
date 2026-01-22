@@ -10,15 +10,17 @@ source:
   sha256: e0ec31f7129014324b91d2b7a6380bf1e9c571fa4b39577112192255d4fa83a9
 
 build:
-  number: 0
+  number: 1
   skip:
-    - not linux
+    - win
   script:
     - cmake ${CMAKE_ARGS} -DCMAKE_INSTALL_PREFIX="${PREFIX}" -S . -B build
     - cmake build -LH
     - cmake --build build --parallel "${CPU_COUNT}"
     - cmake --install build
-    - ctest --test-dir build --output-on-failure
+    # ctest passes on all cross-compiles but osx-arm64
+    - if: build_platform == host_platform
+      then: ctest --test-dir build --output-on-failure
     # c.f. https://github.com/lwtnn/lwtnn/issues/182
     - rm "${PREFIX}"/lib/liblwtnn-stat.a
 
