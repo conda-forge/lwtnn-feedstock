@@ -10,7 +10,7 @@ source:
   sha256: e0ec31f7129014324b91d2b7a6380bf1e9c571fa4b39577112192255d4fa83a9
 
 build:
-  number: 1
+  number: 2
   skip:
     - win
   script:
@@ -39,6 +39,8 @@ requirements:
     - make
   host:
     - libboost-devel
+    - eigen
+  run:
     - eigen
 
 tests:
