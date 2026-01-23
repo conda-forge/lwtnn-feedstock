@@ -127,6 +127,9 @@ tests:
         - wget
         - tar
         - h5py >=2.9.0
+        # lwtnn-examples
+        - git
+        - cxx-compiler
 
     script:
       # Remove hardcoded path to bin and converters
@@ -147,6 +150,15 @@ tests:
       - bash ./tests/test-unsplit-model.sh
       - bash ./tests/test-SimpleRNN.sh
       - bash ./tests/test-conv1d_functional.sh
+
+      # lwtnn-examples
+      - git clone https://github.com/lwtnn/lwtnn-examples.git
+      - cd lwtnn-examples
+      - git checkout 70855aba8650da344d05eb65687e8224e594c8e3
+      - sed -i 's|../test_NN.json|./test_NN.json|g' ./Sequential/AnalysisBase/testExec.cxx
+      - cd Sequential/AnalysisBase
+      - $CXX ./testExec.cxx -o testExec $CXXFLAGS -I$CONDA_PREFIX/include/eigen3 $LDFLAGS -llwtnn
+      - ./testExec
 
 about:
   homepage: https://github.com/lwtnn/lwtnn
