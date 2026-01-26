@@ -16,7 +16,7 @@ source:
     - disable-static-library-build.patch
 
 build:
-  number: 2
+  number: 3
   skip:
     - win
   script:
