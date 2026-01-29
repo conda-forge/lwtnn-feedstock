@@ -1,5 +1,5 @@
 context:
-  version: "2.14.1"
+  version: "2.14.2"
 
 package:
   name: lwtnn
@@ -7,16 +7,10 @@ package:
 
 source:
   url: https://github.com/lwtnn/lwtnn/archive/refs/tags/v${{ version }}.tar.gz
-  sha256: e0ec31f7129014324b91d2b7a6380bf1e9c571fa4b39577112192255d4fa83a9
-  # Remove in releases after 2.14.1
-  patches:
-    # c.f. https://github.com/lwtnn/lwtnn/pull/183
-    - update-cmake-policy_max.patch
-    # c.f. https://github.com/lwtnn/lwtnn/pull/184
-    - disable-static-library-build.patch
+  sha256: 0add0992cf59998a95fa024df4343b6c05d77f7e22c37ec012d9b1fcee4f1f71
 
 build:
-  number: 3
+  number: 0
   skip:
     - win
   script:
@@ -164,8 +158,7 @@ about:
   homepage: https://github.com/lwtnn/lwtnn
   summary: 'Lightweight Trained Neural Network'
   license: MIT
-  # c.f. https://github.com/lwtnn/lwtnn/pull/180
-  license_file: LICENCE
+  license_file: LICENSE
   documentation: https://github.com/lwtnn/lwtnn/wiki
   repository: https://github.com/lwtnn/lwtnn
 
